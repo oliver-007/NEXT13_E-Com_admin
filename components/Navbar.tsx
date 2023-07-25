@@ -31,5 +31,3 @@ const Navbar = async () => {
 };
 
 export default Navbar;
-
-// 02:38:58
