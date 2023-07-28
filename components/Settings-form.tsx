@@ -33,7 +33,7 @@ const formSchema = z.object({
   name: z.string().min(1),
 });
 
-type SettingFormValues = z.infer<typeof formSchema>;
+type SettingsFormValues = z.infer<typeof formSchema>;
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const params = useParams();
@@ -43,12 +43,12 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const form = useForm<SettingFormValues>({
+  const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
 
-  const onSubmit = async (data: SettingFormValues) => {
+  const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
@@ -137,5 +137,3 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     </>
   );
 };
-
-// 03:36:01

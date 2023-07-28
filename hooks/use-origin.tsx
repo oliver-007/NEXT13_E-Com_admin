@@ -17,5 +17,3 @@ export const useOrigin = () => {
 
   return origin;
 };
-
-// need to know the explaination of this code.

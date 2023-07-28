@@ -49,7 +49,3 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
     </Alert>
   );
 };
-
-// need to know the explanation of this code.
-
-// 03:31:11
