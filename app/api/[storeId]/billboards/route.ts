@@ -60,13 +60,13 @@ export async function GET(
       return new NextResponse("Store ID is Required", { status: 400 });
     }
 
-    const billboardS = await prismadb.billboard.findMany({
+    const billboards = await prismadb.billboard.findMany({
       where: {
-        id: params.storeId,
+        storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(billboardS);
+    return NextResponse.json(billboards);
   } catch (error) {
     console.log("[Billboards_GET", error);
     return new NextResponse("Internal error", { status: 500 });
