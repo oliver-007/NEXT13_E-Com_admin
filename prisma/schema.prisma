@@ -20,6 +20,7 @@ model Store {
   sizes Size[] @relation("StoreToSize")
   colors Color[] @relation("StoreToColor")
   products Product[] @relation("StoreToProduct")
+  orders Order[]  @relation("StoreToOrder")
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,6 +95,7 @@ model Product {
   colorId String     //  foreign key to color
   color Color @relation(fields: [colorId], references: [id])
   images Image[]    //  Relation to Image model
+  orderItems OrderItem[]    //  Relation to OrderItem model
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -114,6 +116,28 @@ model Image {
   @@index([productId])
 }
 
-// 06:27:16
+model Order {
+  id String @id @default(uuid())
+  storeId String    //  foreign key to Store
+  store Store @relation("StoreToOrder", fields: [storeId], references: [id])
+  orderItems OrderItem[]   //   Relation to OrderItem model 
+  isPaid Boolean @default(false)
+  phone String @default("")
+  address String @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-// have to generate and then psuh 
+@@index([storeId])
+}
+
+model OrderItem {
+  id String @id @default(uuid())
+  orderId String      // foreign key to Order
+  order Order @relation(fields: [orderId], references: [id])
+  productId String    //  foreign key to Product
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+
+}
