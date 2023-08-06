@@ -18,6 +18,8 @@ model Store {
   billboard Billboard[] @relation("StoreToBillboard")
   categories Category[] @relation("StoreToCategory")
   sizes Size[] @relation("StoreToSize")
+  colors Color[] @relation("StoreToColor")
+  products Product[] @relation("StoreToProduct")
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -39,6 +41,7 @@ model Billboard {
 model Category {
   id String @id @default( uuid())
   name String
+  products Product[] @relation("CategoryToProduct")
   storeId String   //   foreign key to Store
   store Store @relation("StoreToCategory", fields: [storeId], references: [id])
   billboardId String   //   foreign key to Billboard
@@ -56,9 +59,61 @@ model Size {
   store Store @relation("StoreToSize", fields: [storeId], references: [id])
   name String
   value String
-  // products Product[]   //  Relation to Product model
+  products Product[]   //  Relation to Product model
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([storeId])
 }
+
+model Color {
+  id String @id @default(uuid())
+  storeId String      //  foreign key to Store
+  store Store @relation("StoreToColor", fields: [storeId], references: [id])
+  name String
+  value String
+  products Product[]   // Relation to Product model
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId])
+}
+
+model Product {
+  id String @id @default(uuid())
+  storeId String       //  foreign key to Store
+  store Store @relation("StoreToProduct", fields: [storeId], references: [id])
+  categoryId String    //  foreign key to category
+  category Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  name String
+  price Decimal
+  isFeatured Boolean @default(false)
+  isArchived Boolean @default(false)
+  sizeId String      //  foreign key to size
+  size Size @relation(fields: [sizeId], references: [id])
+  colorId String     //  foreign key to color
+  color Color @relation(fields: [colorId], references: [id])
+  images Image[]    //  Relation to Image model
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId])
+  @@index([categoryId])
+  @@index([sizeId])
+  @@index([colorId])
+}
+
+model Image {
+  id String @id @default(uuid())
+  productId String     //  foreign key to product
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url String      // URL of the image
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+// 06:27:16
+
+// have to generate and then psuh 
