@@ -48,5 +48,3 @@ const OrderPage = async ({ params }: { params: { storeId: string } }) => {
 };
 
 export default OrderPage;
-
-// 07:26:15
