@@ -1,4 +1,3 @@
-import { BillboardForm } from "@/components/Billboard-form";
 import { ProductForm } from "@/components/Product-form";
 import prismadb from "@/lib/prismadb";
 
