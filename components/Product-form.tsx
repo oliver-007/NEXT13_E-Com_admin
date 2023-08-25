@@ -351,7 +351,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <div className="space-y-1 leading-none ">
                     <FormLabel className="cursor-pointer">Archived</FormLabel>
                     <FormDescription>
-                      This product won't appear anywhere in the store.
+                      This product wont appear anywhere in the store.
                     </FormDescription>
                   </div>
                 </FormItem>
