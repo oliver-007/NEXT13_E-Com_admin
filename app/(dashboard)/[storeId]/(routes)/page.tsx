@@ -1,29 +1,3 @@
-// import { Heading } from "@/components/ui/Heading";
-// import { Separator } from "@/components/ui/separator";
-// import prismadb from "@/lib/prismadb";
-
-// interface DashboardPageProps {
-//   params: {
-//     storeId: string;
-//   };
-// }
-
-// const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
-//   return (
-//     <div className="flex-col">
-//       <div className="flex-1 space-y-4 p-8 pt-6">
-//         <Heading title="Dashboard" description="Overview of your store" />
-//         <Separator />
-//         <div className="grid gap-4 grid-cols-3" >
-
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DashboardPage;
-
 import { CreditCard, DollarSign, Package } from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
@@ -35,7 +9,7 @@ import { getSalesCount } from "@/actions/get-sales-count";
 import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
-import { Overview } from "@/components/overview";
+import { Overview } from "@/components/Overview";
 
 interface DashboardPageProps {
   params: {
